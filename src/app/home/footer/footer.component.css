@@ -1,0 +1,21 @@
+.col-md-3[type="references"]{
+  font-size: 12px;
+  text-align: right;
+}
+
+a{
+  color: white;
+}
+
+.col-md-3[type="logo"]{
+  text-align: left;
+}
+
+
+img[type="logo"]{
+  width: 68%;
+}
+
+.col-md-1[type="facebook"]{
+
+}
