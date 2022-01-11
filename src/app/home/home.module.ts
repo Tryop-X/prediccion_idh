@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDividerModule} from "@angular/material/divider";
 import {FooterComponent} from "./footer/footer.component";
+import {MatSliderModule} from "@angular/material/slider";
 
 
 @NgModule({
@@ -17,14 +18,15 @@ import {FooterComponent} from "./footer/footer.component";
     CreacionComponent,
     FooterComponent,
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatSelectModule,
-    MatDividerModule
-  ]
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatSelectModule,
+        MatDividerModule,
+        MatSliderModule
+    ]
 })
 export class HomeModule { }

@@ -39,6 +39,16 @@ button {
   margin-left: 75%;
 }
 
+h3{
+  font-size: 18px;
+  vertical-align: middle;
+  margin-top: revert;
+}
+
+mat-slider{
+
+}
+
 .ms-2[type="submit"]{
   width: 100%;
   height: 50%;

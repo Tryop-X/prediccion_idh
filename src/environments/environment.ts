@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBase: 'http://localhost:8092/examen/v1',
+  apiBase: 'http://localhost:8092',
 };
 
 /*
