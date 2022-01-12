@@ -13,7 +13,10 @@ a{
 
 
 img[type="logo"]{
-  width: 68%;
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .col-md-1[type="facebook"]{
