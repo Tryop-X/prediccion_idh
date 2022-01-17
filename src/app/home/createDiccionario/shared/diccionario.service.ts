@@ -16,7 +16,7 @@ export class DiccionarioService {
     return this.http.get<string[]>(this.apibase)
   }
 
-  setPalabras(tam: number, listaPalabras: string[]){
-    return this.http.post(this.apibase+"/"+tam, listaPalabras)
+  setPalabras(tam: number,palabraInicio: string, listaPalabras: string[]){
+    return this.http.post(this.apibase+"/"+tam+"/"+palabraInicio, listaPalabras)
   }
 }

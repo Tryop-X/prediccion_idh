@@ -50,6 +50,42 @@
 </div>
 
 <mat-divider></mat-divider>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Agregar palabra de inicio (opcional)
+            </mat-panel-title>
+            <mat-panel-description>
+              {{panelOpenState ? 'Ejemplo: '+$palabraInicio+'Ncombinación' : ''}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="row">
+
+            <form class="example-form">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Palabra de inicio</mat-label>
+                <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+                <mat-hint align="start"><strong>Asegurate de no sobrepasar el límite</strong> </mat-hint>
+                <mat-hint align="end">{{message.value.length}} / 50</mat-hint>
+              </mat-form-field>
+            </form>
+
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
 
 
 <div class="container">
@@ -85,6 +121,9 @@
     </div>
   </div>
 </div>
+
+
+<mat-divider></mat-divider>
 
 <div class="container">
   <div class="example-container mat-elevation-z8">

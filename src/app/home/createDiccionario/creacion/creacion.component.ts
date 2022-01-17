@@ -18,6 +18,8 @@ export class CreacionComponent implements OnInit {
   dataSource: Word[] = [];
   number = 0;
   tamCombinaciones= 0;
+  $palabraInicio = "inicio";
+  panelOpenState= false;
 
   @ViewChild(MatTable) table: MatTable<Word>;
   constructor(private formBuilder:FormBuilder, public diccionarioService: DiccionarioService) {
@@ -82,23 +84,24 @@ export class CreacionComponent implements OnInit {
 
     console.log(this.tamCombinaciones)
 
-    let listaPalbras = [];
+    let listaPalabras = [];
     let diccionario = ""
     for (let p of this.dataSource.values()){
-      listaPalbras.push(p.palabra);
+      listaPalabras.push(p.palabra);
       diccionario = diccionario+p.palabra+"\n"
     }
 
 
-    this.diccionarioService.setPalabras(this.tamCombinaciones, listaPalbras).subscribe(()=>{
-
-    })
-
-
-
-
+    this.diccionarioService.setPalabras(this.tamCombinaciones , this.$palabraInicio, listaPalabras).subscribe(()=>{
+      console.log("si se pudo crear")
+    }),(error:any)=>{
+      console.log("no se pudo")
+    }
     this.diccionarioService.getDccionario().subscribe((data:any)=>{
-    })
+      console.log(data)
+    }),(error:any)=>{
+      console.log("tasjdhasd")
+    }
 
     var today = new Date();
     var time =today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
@@ -111,6 +114,9 @@ export class CreacionComponent implements OnInit {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+
+
+    this.ngOnInit()
   }
 
 

@@ -10,6 +10,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatDividerModule} from "@angular/material/divider";
 import {FooterComponent} from "./footer/footer.component";
 import {MatSliderModule} from "@angular/material/slider";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {MatSliderModule} from "@angular/material/slider";
         FormsModule,
         MatSelectModule,
         MatDividerModule,
-        MatSliderModule
+        MatSliderModule,
+        MatExpansionModule
     ]
 })
 export class HomeModule { }
