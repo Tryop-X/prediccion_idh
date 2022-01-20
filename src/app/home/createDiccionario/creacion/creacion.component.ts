@@ -4,6 +4,7 @@ import {Word} from "../shared/word.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DiccionarioService} from "../shared/diccionario.service";
 import {eventListeners} from "@popperjs/core";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-creacion',
@@ -17,8 +18,8 @@ export class CreacionComponent implements OnInit {
   displayedColumns: string[] = ['posicion', 'palabra'];
   dataSource: Word[] = [];
   number = 0;
-  tamCombinaciones= 0;
-  $palabraInicio = "inicio";
+  tamCombinaciones= 1;
+  palabraInicio = "";
   panelOpenState= false;
 
   @ViewChild(MatTable) table: MatTable<Word>;
@@ -37,7 +38,7 @@ export class CreacionComponent implements OnInit {
   }
 
   getActual(){
-    if(this.tamCombinaciones<1){
+    if(this.tamCombinaciones<3){
       return this.number;
     }else{
       return this.tamCombinaciones
@@ -73,53 +74,105 @@ export class CreacionComponent implements OnInit {
     this.table.renderRows();
   }
 
-
-
   descargar() {
+    this.setedarDatos()
 
 
-    if(this.tamCombinaciones<1){
-      this.tamCombinaciones= this.number;
+
+
+
+  }
+
+  setedarDatos(){
+
+    console.log(this.tamCombinaciones+"n: "+this.number)
+    console.log(this.palabraInicio)
+
+
+    if(this.tamCombinaciones<2){
+      this.tamCombinaciones=this.number;
     }
 
-    console.log(this.tamCombinaciones)
+    console.log(this.tamCombinaciones+"n: "+this.number)
 
     let listaPalabras = [];
-    let diccionario = ""
     for (let p of this.dataSource.values()){
       listaPalabras.push(p.palabra);
-      diccionario = diccionario+p.palabra+"\n"
     }
 
+    this.diccionarioService.setPalabras(this.tamCombinaciones , this.palabraInicio, listaPalabras).subscribe(()=>{
+      Swal.fire({
+        icon: 'question',
+        title: '¿Quiere descargar el archivo?',
+        padding: '3em',
+        showCancelButton:true,
+        cancelButtonColor:'#d33',
+        cancelButtonText:'cancelar',
+        confirmButtonText:'Descargar',
+        confirmButtonColor:'#3085d6',
 
-    this.diccionarioService.setPalabras(this.tamCombinaciones , this.$palabraInicio, listaPalabras).subscribe(()=>{
-      console.log("si se pudo crear")
-    }),(error:any)=>{
-      console.log("no se pudo")
-    }
-    this.diccionarioService.getDccionario().subscribe((data:any)=>{
-      console.log(data)
-    }),(error:any)=>{
-      console.log("tasjdhasd")
-    }
+      }).then(respuesta =>{
+        if(respuesta.value){
+          Swal.fire({
+            title:"Su archivo se está generando",
+            didOpen: () => {
+              Swal.showLoading()
+            }
+          })
+          this.diccionarioService.getDccionario().subscribe((data:any)=>{
+            Swal.fire({
+              icon: 'success',
+              title: 'Archivo creado',
+              showConfirmButton: false,
+              timer: 2500
+            })
+            this.generarArchivo(data)
+            this.reiniciarDatos()
+          },(error:any)=>{
+            Swal.fire({
+              icon: 'error',
+              title: 'No se ha podido descargar su archivo',
+              showConfirmButton: false,
+              timer: 2500
+            })
+          })
+        }
+      })
 
+    },(error:any)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'No se han podido cargar los datos',
+        showConfirmButton: false,
+        timer: 2500
+        })
+      }
+    )
+  }
+
+  reiniciarDatos(){
+    this.dataSource=this.dataSource.slice(0,0);
+    this.palabraInicio="";
+    this.number=0;
+    this.tamCombinaciones=2;
+  }
+
+  generarArchivo(data: any){
     var today = new Date();
     var time =today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
-
-
     var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(diccionario));
+
+    let combo=""
+    for (let palabra of data){
+      combo+=palabra+"\n";
+    }
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(combo));
     element.setAttribute('download', "dicDat-"+time+".txt");
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-
-
-    this.ngOnInit()
   }
-
-
 
   agregarDatos(evento:KeyboardEvent){
     if(evento.key=="Enter" && this.form.value.palabra.length>0){

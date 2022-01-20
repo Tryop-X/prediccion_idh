@@ -56,14 +56,12 @@
       <mat-accordion>
         <mat-expansion-panel (opened)="panelOpenState = true"
                              (closed)="panelOpenState = false">
-
-
           <mat-expansion-panel-header>
             <mat-panel-title>
               Agregar palabra de inicio (opcional)
             </mat-panel-title>
             <mat-panel-description>
-              {{panelOpenState ? 'Ejemplo: '+$palabraInicio+'Ncombinación' : ''}}
+              {{panelOpenState ? 'Ejemplo: '+palabraInicio+' + ncombinación' : ''}}
             </mat-panel-description>
           </mat-expansion-panel-header>
 
@@ -72,7 +70,15 @@
             <form class="example-form">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Palabra de inicio</mat-label>
-                <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+                <input
+                  matInput
+                  #message maxlength="256"
+                  placeholder="Ex. I need help with..."
+                  [ngModelOptions]="{standalone:true}"
+                  [(ngModel)]="palabraInicio"
+
+
+                >
                 <mat-hint align="start"><strong>Asegurate de no sobrepasar el límite</strong> </mat-hint>
                 <mat-hint align="end">{{message.value.length}} / 50</mat-hint>
               </mat-form-field>
@@ -101,7 +107,7 @@
         tickInterval="1"
         color="warn"
         step="1"
-        min="2"
+        min="1"
         [(ngModel)]="tamCombinaciones"
         [value]="getActual()"
         [max]="getMaximo()"
