@@ -11,6 +11,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {FooterComponent} from "./footer/footer.component";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatExpansionModule} from "@angular/material/expansion";
+import { ComoUsarComponent } from './como-usar/como-usar.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     LayoutComponent,
     CreacionComponent,
     FooterComponent,
+    ComoUsarComponent,
   ],
     imports: [
         CommonModule,

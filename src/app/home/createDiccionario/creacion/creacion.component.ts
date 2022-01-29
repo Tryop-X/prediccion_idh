@@ -3,7 +3,6 @@ import {MatTable} from "@angular/material/table";
 import {Word} from "../shared/word.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DiccionarioService} from "../shared/diccionario.service";
-import {eventListeners} from "@popperjs/core";
 import Swal from "sweetalert2";
 
 @Component({
@@ -20,6 +19,7 @@ export class CreacionComponent implements OnInit {
   number = 0;
   tamCombinaciones= 1;
   palabraInicio = "";
+  minCombinaciones=1;
   panelOpenState= false;
 
   @ViewChild(MatTable) table: MatTable<Word>;
@@ -38,10 +38,19 @@ export class CreacionComponent implements OnInit {
   }
 
   getActual(){
-    if(this.tamCombinaciones<3){
+    if(this.tamCombinaciones<3 || this.number<this.tamCombinaciones){
       return this.number;
     }else{
       return this.tamCombinaciones
+    }
+  }
+
+  setTamagnos(){
+    if(this.tamCombinaciones<2){
+      this.tamCombinaciones=this.number;
+    }
+    if(this.minCombinaciones>this.tamCombinaciones){
+      this.minCombinaciones = this.tamCombinaciones;
     }
   }
 
@@ -75,32 +84,20 @@ export class CreacionComponent implements OnInit {
   }
 
   descargar() {
+    console.log("queremos decargar")
     this.setedarDatos()
-
-
-
-
-
   }
 
   setedarDatos(){
 
-    console.log(this.tamCombinaciones+"n: "+this.number)
-    console.log(this.palabraInicio)
-
-
-    if(this.tamCombinaciones<2){
-      this.tamCombinaciones=this.number;
-    }
-
-    console.log(this.tamCombinaciones+"n: "+this.number)
+    this.setTamagnos()
 
     let listaPalabras = [];
     for (let p of this.dataSource.values()){
       listaPalabras.push(p.palabra);
     }
 
-    this.diccionarioService.setPalabras(this.tamCombinaciones , this.palabraInicio, listaPalabras).subscribe(()=>{
+    this.diccionarioService.setPalabras(this.tamCombinaciones ,this.minCombinaciones, this.palabraInicio, listaPalabras).subscribe(()=>{
       Swal.fire({
         icon: 'question',
         title: '¿Quiere descargar el archivo?',
@@ -164,7 +161,7 @@ export class CreacionComponent implements OnInit {
 
     let combo=""
     for (let palabra of data){
-      combo+=palabra+"\n";
+      combo+=palabra;
     }
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(combo));
     element.setAttribute('download', "dicDat-"+time+".txt");

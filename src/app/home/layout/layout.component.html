@@ -1,31 +1,37 @@
+
+
 <mat-toolbar color="primary" style="background:  #111111d9">
-  <span>DicDat</span>
-  <button mat-button routerLink="/admin/coffes" class="ms-2">CRUD</button>
-  <span class="spacer"></span>
-  <button mat-button [matMenuTriggerFor]="menu" >
-    ¿Cómo usar?
-    <mat-icon>apps icon</mat-icon>
+  <button mat-button routerLink="/"><img style="width: 45%; filter:invert(100%)" src="assets/img/logoNegro.png"></button>
+
+  <span class="example-spacer"></span>
+  <button mat-button
+          [matMenuTriggerFor]="menu"
+            >
+    ¿Tienes dudas?
+    <mat-icon>menu</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
+  <mat-menu #menu="matMenu" >
+    <button mat-menu-item routerLink="/comoUsar">
+      <mat-icon>live_help</mat-icon>
+      <span>¿Como usar?</span>
     </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
+    <button mat-menu-item action="http://google.com">
+      <mat-icon>attach_money</mat-icon>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=YH5DXSJRNEN7Y" target="_blank">Quiero Donar</a>
     </button>
   </mat-menu>
 </mat-toolbar>
+
+
+
+
 
 <div class="container p-5">
   <router-outlet></router-outlet>
 </div>
 
 <app-footer></app-footer>
+
+
 
 
