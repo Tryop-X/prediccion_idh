@@ -21,8 +21,10 @@ img[type="logo"]{
 }
 
 img{
-  width: 80%;
-}
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;}
 
 .col-md-1{
   link: "gooogle.com";
