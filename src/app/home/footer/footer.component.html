@@ -1,41 +1,56 @@
 <mat-toolbar color="primary" style="background:  #6E6E6E">
-  <button mat-button routerLink="/"><img  class="img-fluid" alt="Responsive image" src="assets/img/logoNegro.png"></button>
+
+
+  <button mat-button
+          [matMenuTriggerFor]="menu"
+  >
+    <mat-icon>menu</mat-icon>
+    Conoce m&aacute;s
+  </button>
+  <mat-menu #menu="matMenu" >
+    <button mat-menu-item>
+      <mat-icon><img class="img-fluid" alt="Responsive image" src="assets/img/githubc.png">
+      </mat-icon>
+      <a href="https://github.com/Tryop-X" target="_blank">GitHub</a>
+    </button>
+
+    <button mat-menu-item>
+      <mat-icon><img class="img-fluid" alt="Responsive image" src="assets/img/youtubec.png">
+      </mat-icon>
+      <a href="https://www.youtube.com/" target="_blank">Youtube</a>
+    </button>
+
+    <button mat-menu-item>
+      <mat-icon><img class="img-fluid" alt="Responsive image" src="assets/img/linkedinc.png">
+      </mat-icon>
+      <a href="https://www.linkedin.com/in/hugo-franklin-vera-s%C3%A1nchez-2332a8183/" target="_blank">Linkedin</a>
+    </button>
+
+    <button mat-menu-item >
+      <mat-icon><img class="img-fluid" alt="Responsive image" src="assets/img/twitterc.png">
+      </mat-icon>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=YH5DXSJRNEN7Y" target="_blank">Twitter</a>
+    </button>
+
+    <button mat-menu-item >
+    <mat-icon><img class="img-fluid" alt="Responsive image" src="assets/img/facebookc.png">
+    </mat-icon>
+    <a href="https://www.facebook.com/hugo.vera.3591/" target="_blank">Facebook</a>
+    </button>
+
+    <button mat-menu-item>
+      <mat-icon><img class="img-fluid" alt="Responsive image" src="assets/img/patreonc.png">
+      </mat-icon>
+      <a href="https://www.patreon.com/tryopx" target="_blank">Patreon</a>
+    </button>
+
+  </mat-menu>
+
 
   <span class="example-spacer"></span>
-  <a href="https://www.facebook.com/hugo.vera.3591/" target="_blank">
-    <button mat-button class="ms-2" type="submit">
-      <img class="img-fluid" alt="Responsive image" src="assets/img/facebookc.png">
-    </button>
-  </a>
-  <a href="https://twitter.com/hugohfvs1027" target="_blank">
-    <button mat-button class="ms-2" type="submit">
-      <img class="img-fluid" alt="Responsive image" src="assets/img/twitterc.png">
-    </button>
-  </a>
-  <a href="https://google.com" target="_blank">
-    <button mat-button class="ms-2" type="submit">
-      <img class="img-fluid" alt="Responsive image" src="assets/img/youtubec.png">
-    </button>
-  </a>
-  <a href="https://github.com/Tryop-X" target="_blank">
-    <button mat-button class="ms-2" type="submit">
-      <img class="img-fluid" alt="Responsive image" src="assets/img/githubc.png">
-    </button>
-  </a>
-  <a href="https://www.linkedin.com/in/hugo-franklin-vera-s%C3%A1nchez-2332a8183/" target="_blank">
-    <button mat-button class="ms-2" type="submit">
-      <img class="img-fluid" alt="Responsive image" src="assets/img/linkedinc.png">
-    </button>
-  </a>
-  <a href="https://www.patreon.com/tryopx" target="_blank">
-    <button mat-button class="ms-2" type="submit">
-      <img class="img-fluid" alt="Responsive image" src="assets/img/patreonc.png">
-    </button>
-  </a>
-  <span class="example-spacer"></span>
   <div>
-    <p><small><small>Desarrollado por Tryopx (Hugo Vera) <br>
-      Puedes revisar la api en mi <a href="https://github.com/Tryop-X" style="color: lightgray">GitHub</a>
+    <p><small><small>Desarrollado por Hugo Vera</small></small> </p>
+    <p><small><small>Revisa la api en mi <a href="https://github.com/Tryop-X" style="color: lightgray">GitHub</a>
     </small></small></p>
   </div>
 </mat-toolbar>

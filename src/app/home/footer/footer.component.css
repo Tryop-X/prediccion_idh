@@ -4,7 +4,7 @@
 }
 
 a{
-  color: white;
+  color: black ;
 }
 
 .col-md-3[type="logo"]{
@@ -12,19 +12,16 @@ a{
 }
 
 
-img[type="logo"]{
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+p{
+  margin:-8% 0;
 }
 
 img{
-  width: 70%;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;}
+  align-items: center;
+}
 
 .col-md-1{
   link: "gooogle.com";
