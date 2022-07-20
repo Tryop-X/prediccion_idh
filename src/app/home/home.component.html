@@ -1,0 +1,137 @@
+
+
+<body>
+<mat-toolbar color="primary" style="background:  #111111d9">
+  <button mat-button  routerLink="/">PREDICCIÓN DEL ÍNDICE DE DESARROLLO HUMANO</button>
+  <span class="example-spacer"></span>
+
+
+  <button mat-button [matMenuTriggerFor]="menu">
+    ¿Tienes dudas?
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <button mat-menu-item routerLink="/comoUsar">
+      <mat-icon>live_help</mat-icon>
+      <span>¿C&oacute;mo usar?</span>
+    </button>
+    <a href="https://www.paypal.com/donate/?hosted_button_id=YH5DXSJRNEN7Y" target="_blank">
+      <button mat-menu-item>
+        <mat-icon>attach_money</mat-icon>
+        <span>Quiero donar!</span>
+      </button>
+    </a>
+  </mat-menu>
+</mat-toolbar>
+
+  <div class="container" style="margin-top: 20px;">
+
+
+    <div class="row">
+
+
+
+
+      <div class="col-md-3">
+        <a>IDH: <b>{{i_desarrollo}}</b></a>
+      </div>
+
+      <div class="col-md-3">
+        <a>Año: <b>{{anio}}</b></a>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Selecciona el País</mat-label>
+          <mat-select [(value)]="pSelected">
+            <mat-option *ngFor="let p of pais" [value]="p.nombre" >
+              {{p.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <button mat-raised-button color="warn" (click)="setValores()">Setear datos</button>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <a>Gasto educacion - PBI: <b>{{i_gastoEducaion}}</b></a>
+      </div>
+
+      <div class="col-md-3">
+        <a>Gasto salud - PBI: <b>{{i_gastoSalud}}</b></a>
+      </div>
+      <div class="col-md-3">
+        <a>% Pobreza extrema: <b>{{i_pobreza}}</b></a>
+      </div>
+      <div class="col-md-3">
+        <a>Edad media: <b>{{i_edadMedia}}</b></a>
+      </div>
+
+    </div>
+    <mat-divider style="margin-bottom: 15px; margin-top: 15px"></mat-divider>
+
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <button mat-raised-button color="warn" (click)="generarPrediccion()" [disabled]="es_valido()">Generar predicción</button>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+      <div class="col-md-6">
+        <a>Predicción del IDH: <span id="resultado"></span> </a>
+      </div>
+
+      <div class="col-md-6">
+        <a>Año: <b>{{i_agno}}</b></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <form class="example-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Gasto en educacion</mat-label>
+            <input type="number" matInput id="valorGE" [value]="i_GE">
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="col-md-3">
+        <form class="example-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Gasto en salud</mat-label>
+            <input type="number" matInput id="valorGS" [value]="i_GS">
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="col-md-3">
+        <form class="example-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>% Pobreza extrema</mat-label>
+            <input type="number" matInput matInput id="valorP" [value]="i_P">
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="col-md-3">
+        <form class="example-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Edad media</mat-label>
+            <input type="number" matInput matInput id="valorEM" [value]="i_EM">
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <div class="row" style="margin-left: 30%">
+      <img src="assets/correlacion.png" alt="imagen" style="width: 40%">
+    </div>
+
+
+
+  </div>
+</body>
+
